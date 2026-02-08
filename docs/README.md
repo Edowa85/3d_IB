@@ -77,7 +77,7 @@ erDiagram
     USER {
         ObjectId _id PK
         string username UK
-        string_password "hashed password"
+        string password "hashed password"
         Date createdAt
         Date updatedAt
     }
@@ -264,7 +264,3 @@ The card back should feature western/saloon themed artwork. You can:
 ## Author
 
 Petri
-
----
-
-**Note:** This project was built as a school assignment with a 5-day timeline. It demonstrates full-stack JavaScript development with Three.js 3D graphics, MongoDB integration, and MVC architecture.
