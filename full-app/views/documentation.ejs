@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation - 3Dcard</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .docs-nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .docs-nav-card {
+      background: rgba(212, 165, 116, 0.1);
+      border: 2px solid #d4a574;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .docs-nav-card:hover {
+      background: rgba(212, 165, 116, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 4px 20px rgba(212, 165, 116, 0.3);
+    }
+
+    .docs-nav-card h3 {
+      color: #d4a574;
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    .docs-nav-card p {
+      color: #ccc;
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .docs-nav-card .btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .docs-content {
+      display: none;
+    }
+
+    .docs-content.active {
+      display: block;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #d4a574;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      text-decoration: underline;
+    }
+
+    .diagram {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+
+    .diagram pre {
+      margin: 0;
+      font-size: 0.85rem;
+    }
+
+    .compliance-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .compliance-list a {
+      display: block;
+      padding: 1rem;
+      background: rgba(212, 165, 116, 0.1);
+      border: 1px solid #d4a574;
+      border-radius: 0.5rem;
+      color: #d4a574;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .compliance-list a:hover {
+      background: rgba(212, 165, 116, 0.2);
+      transform: translateX(4px);
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVIGATION BAR -->
+  <nav aria-label="Menu" class="menu">
+    <input type="checkbox" id="checkbox1" class="checkbox1">
+    <label for="checkbox1">
+      <div class="button button1">
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+      </div>
+    </label>
+
+    <ul class="menu-list">
+      <li><a href="/">Home</a></li>
+      <% if (user) { %>
+        <li><a href="/questions">Questions</a></li>
+        <li><a href="/logout">Log out</a></li>
+      <% } else { %>
+        <li><a href="/login">Log in</a></li>
+        <li><a href="/signup">Sign up</a></li>
+      <% } %>
+      <li><a href="/documentation">Documentation</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="page-section active">
+      <div class="documentation">
+        <!-- Documentation Navigation -->
+        <div id="docs-home" class="docs-home">
+          <h1>3Dcard Documentation Hub</h1>
+          <p>Welcome to the complete documentation for 3Dcard. Select a document below to view.</p>
+
+          <h2>📋 Project Documentation</h2>
+          <div class="docs-nav">
+            <div class="docs-nav-card">
+              <h3>Project Plan</h3>
+              <p>5-day timeline, objectives, scope, risk assessment</p>
+              <button class="btn btn-secondary" onclick="showDocs('project-plan')">View</button>
+            </div>
+            <div class="docs-nav-card">
+              <h3>Requirements Specification</h3>
+              <p>Functional and non-functional requirements</p>
+              <button class="btn btn-secondary" onclick="showDocs('requirements')">View</button>
+            </div>
+            <div class="docs-nav-card">
+              <h3>Design Document</h3>
+              <p>MVC architecture, component design, database schema</p>
+              <button class="btn btn-secondary" onclick="showDocs('design')">View</button>
+            </div>
+            <div class="docs-nav-card">
+              <h3>Test Plan</h3>
+              <p>Unit, integration, functional, security testing</p>
+              <button class="btn btn-secondary" onclick="showDocs('test-plan')">View</button>
+            </div>
+            <div class="docs-nav-card">
+              <h3>Technical Documentation</h3>
+              <p>Folder structure, routes, frontend logic</p>
+              <button class="btn btn-secondary" onclick="showDocs('technical')">View</button>
+            </div>
+            <div class="docs-nav-card">
+              <h3>Wireframes & Site Map</h3>
+              <p>Page layouts, user flows, responsive design</p>
+              <button class="btn btn-secondary" onclick="showDocs('wireframes')">View</button>
+            </div>
+          </div>
+
+          <h2>⚖️ Compliance Documents</h2>
+          <div class="compliance-list">
+            <a href="/compliance/accessibility-statement.md" target="_blank">
+              📄 Accessibility Statement (WCAG)
+            </a>
+            <a href="/compliance/cookies-policy.md" target="_blank">
+              🍪 Cookies Policy (ePrivacy)
+            </a>
+            <a href="/compliance/data-protection-security.md" target="_blank">
+              🔒 Data Protection & Security
+            </a>
+            <a href="/compliance/digital-services-act.md" target="_blank">
+              📜 Digital Services Act
+            </a>
+            <a href="/compliance/gdpr-compliance.md" target="_blank">
+              🇪🇺 GDPR Compliance
+            </a>
+            <a href="/compliance/privacy-policy.md" target="_blank">
+              👁️ Privacy Policy
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Plan -->
+        <div id="project-plan" class="docs-content">
+          <span class="back-btn" onclick="showDocs('home')">← Back to Documentation Hub</span>
+          <h1>3Dcard - Project Plan</h1>
+
+          <h2>1. Executive Summary</h2>
+          <p>3Dcard is a web-based social icebreaker game designed to eliminate awkward silences when people meet for the first time. The project consists of two versions: a browser-only demonstration version and a full-featured application with MongoDB authentication and persistent data storage.</p>
+
+          <h2>2. Project Objectives</h2>
+          <h3>Primary Objectives:</h3>
+          <ul>
+            <li>Functional 3D Card Interface - Implement an interactive 3D card using Three.js</li>
+            <li>User Authentication - Create secure user signup/login system with MongoDB</li>
+            <li>Question Management - Implement full CRUD operations for conversation questions</li>
+            <li>Dual Version Delivery - Produce both demo and full application versions</li>
+            <li>Comprehensive Documentation - Complete technical documentation with Mermaid diagrams</li>
+          </ul>
+
+          <h3>Success Criteria:</h3>
+          <table>
+            <tr>
+              <th>Criterion</th>
+              <th>Measurement</th>
+              <th>Target</th>
+            </tr>
+            <tr>
+              <td>Functional 3D Card</td>
+              <td>Card flips smoothly, mouse-tilt works</td>
+              <td>100%</td>
+            </tr>
+            <tr>
+              <td>MongoDB Connection</td>
+              <td>Stable database connection</td>
+              <td>100% uptime</td>
+            </tr>
+            <tr>
+              <td>CRUD Operations</td>
+              <td>Create, Read, Update, Delete all work</td>
+              <td>All 4 operations</td>
+            </tr>
+            <tr>
+              <td>Code Quality</td>
+              <td>Clean, commented, MVC architecture</td>
+              <td>Meets standards</td>
+            </tr>
+          </table>
+
+          <h2>3. Architecture</h2>
+          <div class="diagram">
+            <pre>
+┌─────────────────────────────────────────────┐
+│                 CLIENT LAYER                 │
+│  HTML, CSS, Three.js, Vanilla JS           │
+└─────────────────┬───────────────────────────┘
+                  │ HTTP Requests
+┌─────────────────▼───────────────────────────┐
+│              SERVER (Express)                │
+│  Routes → Controllers → Models → Database    │
+└─────────────────┬───────────────────────────┘
+                  │ Mongoose
+┌─────────────────▼───────────────────────────┐
+│              MongoDB Database                │
+└─────────────────────────────────────────────┘
+            </pre>
+          </div>
+
+          <h2>4. Development Timeline (5 Days)</h2>
+          <table>
+            <tr>
+              <th>Day</th>
+              <th>Focus</th>
+              <th>Tasks</th>
+            </tr>
+            <tr>
+              <td>Day 1</td>
+              <td>Foundation</td>
+              <td>Project structure, schemas, server setup</td>
+            </tr>
+            <tr>
+              <td>Day 2</td>
+              <td>Authentication</td>
+              <td>Signup, login, session management</td>
+            </tr>
+            <tr>
+              <td>Day 3</td>
+              <td>Core Features</td>
+              <td>Three.js card, question CRUD</td>
+            </tr>
+            <tr>
+              <td>Day 4</td>
+              <td>Integration</td>
+              <td>Navigation, responsive design, polish</td>
+            </tr>
+            <tr>
+              <td>Day 5</td>
+              <td>Documentation</td>
+              <td>Technical docs, Mermaid diagrams, testing</td>
+            </tr>
+          </table>
+
+          <h2>5. Technology Stack</h2>
+          <table>
+            <tr>
+              <th>Layer</th>
+              <th>Technology</th>
+              <th>Purpose</th>
+            </tr>
+            <tr>
+              <td>Frontend</td>
+              <td>HTML5, CSS3, Three.js</td>
+              <td>User interface, 3D rendering</td>
+            </tr>
+            <tr>
+              <td>Backend</td>
+              <td>Node.js, Express.js</td>
+              <td>Web server, routing</td>
+            </tr>
+            <tr>
+              <td>Database</td>
+              <td>MongoDB, Mongoose</td>
+              <td>Data persistence</td>
+            </tr>
+            <tr>
+              <td>Authentication</td>
+              <td>bcryptjs, express-session</td>
+              <td>Password hashing, sessions</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Requirements Specification -->
+        <div id="requirements" class="docs-content">
+          <span class="back-btn" onclick="showDocs('home')">← Back to Documentation Hub</span>
+          <h1>Requirements Specification</h1>
+
+          <h2>1. Functional Requirements - Demo Version</h2>
+          <h3>FR-D1: 3D Card Display</h3>
+          <p>The application shall display a 3D western-style playing card on the home page using Three.js.</p>
+          <ul>
+            <li>Card maintains 2.5:3.5 aspect ratio</li>
+            <li>Card displays in center of viewport</li>
+            <li>Card has visual western/saloon theme</li>
+          </ul>
+
+          <h3>FR-D2: Card Flip Animation</h3>
+          <p>Users shall be able to click the card to flip it and reveal a question.</p>
+          <ul>
+            <li>Single click initiates flip animation</li>
+            <li>Animation completes within 600ms</li>
+            <li>Card rotates 180 degrees smoothly</li>
+          </ul>
+
+          <h3>FR-D3: Mouse-Tilt Effect</h3>
+          <p>The card shall respond to mouse movement with a subtle tilt effect.</p>
+          <ul>
+            <li>Card tilts toward mouse cursor position</li>
+            <li>Maximum tilt angle is 15 degrees</li>
+            <li>Tilt updates smoothly with easing</li>
+          </ul>
+
+          <h3>FR-D4: Question Display</h3>
+          <p>The application shall display conversation-starter questions on the card.</p>
+          <ul>
+            <li>Questions render as text on card front</li>
+            <li>Text supports word wrapping</li>
+            <li>Default question set provided (10 questions)</li>
+          </ul>
+
+          <h3>FR-D5: Question CRUD (Browser)</h3>
+          <p>Users shall be able to manage questions through browser storage.</p>
+          <ul>
+            <li>Create new question</li>
+            <li>Read/list all questions</li>
+            <li>Update existing question</li>
+            <li>Delete questions</li>
+            <li>Data persists in localStorage</li>
+          </ul>
+
+          <h2>2. Functional Requirements - Full Application</h2>
+          <h3>FR-F1: User Registration</h3>
+          <ul>
+            <li>Username: 3-30 characters, unique</li>
+            <li>Password: minimum 6 characters</li>
+            <li>Password hashed before storage (bcrypt)</li>
+          </ul>
+
+          <h3>FR-F2: User Login</h3>
+          <ul>
+            <li>Validates credentials against database</li>
+            <li>Creates session on successful login</li>
+            <li>Redirects to home page on success</li>
+          </ul>
+
+          <h3>FR-F4: Question CRUD (MongoDB)</h3>
+          <ul>
+            <li>Create: Add new question to database</li>
+            <li>Read: Retrieve user's questions only</li>
+            <li>Update: Modify question text</li>
+            <li>Delete: Remove question from database</li>
+          </ul>
+
+          <h3>FR-F5: User Data Isolation</h3>
+          <ul>
+            <li>Questions filtered by createdBy field</li>
+            <li>Users cannot access other users' questions</li>
+            <li>API validates user ownership on update/delete</li>
+          </ul>
+
+          <h2>3. Non-Functional Requirements</h2>
+          <table>
+            <tr>
+              <th>Category</th>
+              <th>Requirement</th>
+              <th>Target</th>
+            </tr>
+            <tr>
+              <td>Performance</td>
+              <td>API response time</td>
+              <td>< 500ms</td>
+            </tr>
+            <tr>
+              <td>Performance</td>
+              <td>Animation frame rate</td>
+              <td>60 FPS</td>
+            </tr>
+            <tr>
+              <td>Security</td>
+              <td>Password hashing</td>
+              <td>bcrypt, 10 salt rounds</td>
+            </tr>
+            <tr>
+              <td>Security</td>
+              <td>Session duration</td>
+              <td>24 hours</td>
+            </tr>
+            <tr>
+              <td>Usability</td>
+              <td>Responsive design</td>
+              <td>Mobile, tablet, desktop</td>
+            </tr>
+          </table>
+
+          <h2>4. Data Requirements</h2>
+          <h3>User Data</h3>
+          <table>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Constraints</th>
+            </tr>
+            <tr>
+              <td>username</td>
+              <td>String</td>
+              <td>3-30 chars, unique</td>
+            </tr>
+            <tr>
+              <td>password</td>
+              <td>String</td>
+              <td>Min 6 chars (hashed)</td>
+            </tr>
+          </table>
+
+          <h3>Question Data</h3>
+          <table>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Constraints</th>
+            </tr>
+            <tr>
+              <td>text</td>
+              <td>String</td>
+              <td>5-500 chars</td>
+            </tr>
+            <tr>
+              <td>createdBy</td>
+              <td>ObjectId</td>
+              <td>Ref: User</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- Design Document -->
+        <div id="design" class="docs-content">
+          <span class="back-btn" onclick="showDocs('home')">← Back to Documentation Hub</span>
+          <h1>Design Document</h1>
+
+          <h2>1. System Architecture</h2>
+          <p>3Dcard follows the <strong>Model-View-Controller (MVC)</strong> architectural pattern.</p>
+
+          <h3>MVC Architecture Diagram</h3>
+          <div class="diagram">
+            <pre>
+┌─────────────────────────────────────────────┐
+│              CLIENT LAYER                   │
+│   HTML │ CSS │ Vanilla JS │ Three.js        │
+└─────────────────┬───────────────────────────┘
+                  │ HTTP/HTTPS
+┌─────────────────▼───────────────────────────┐
+│          EXPRESS ROUTES (Controller)         │
+│  /, /signup, /login, /logout, /questions     │
+└─────────────────┬───────────────────────────┘
+                  │
+┌─────────────────▼───────────────────────────┐
+│          MODELS (Data Access)                │
+│  User Schema │ Question Schema               │
+└─────────────────┬───────────────────────────┘
+                  │ Mongoose
+┌─────────────────▼───────────────────────────┐
+│           MONGODB DATABASE                   │
+│  Users Collection │ Questions Collection      │
+└─────────────────────────────────────────────┘
+            </pre>
+          </div>
+
+          <h2>2. Database Schema</h2>
+          <h3>Entity Relationship Diagram</h3>
+          <div class="diagram">
+            <pre>
+┌──────────────┐       ┌──────────────┐
+│    USER      │       │   QUESTION   │
+├──────────────┤       ├──────────────┤
+│ _id (PK)     │       │ _id (PK)     │
+│ username     │──1:N──│ createdBy    │
+│ password     │       │ text         │
+│ createdAt    │       │ createdAt    │
+│ updatedAt    │       │ updatedAt    │
+└──────────────┘       └──────────────┘
+            </pre>
+          </div>
+
+          <h3>User Schema</h3>
+          <pre><code>{
+  _id: ObjectId,
+  username: String (3-30 chars, unique),
+  password: String (hashed, min 6 chars),
+  createdAt: Date,
+  updatedAt: Date
+}</code></pre>
+
+          <h3>Question Schema</h3>
+          <pre><code>{
+  _id: ObjectId,
+  text: String (5-500 chars),
+  createdBy: ObjectId (ref: User),
+  createdAt: Date,
+  updatedAt: Date
+}</code></pre>
+
+          <h2>3. API Endpoints</h2>
+          <table>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Description</th>
+              <th>Auth</th>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>/</td>
+              <td>Home page</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td>/signup</td>
+              <td>Create account</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td>/login</td>
+              <td>Authenticate</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>/logout</td>
+              <td>End session</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>/questions</td>
+              <td>Questions page</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td>/questions</td>
+              <td>Create question</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>PUT</td>
+              <td>/questions/:id</td>
+              <td>Update question</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td>/questions/:id</td>
+              <td>Delete question</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td>/api/questions/random</td>
+              <td>Random question</td>
+              <td>Yes</td>
+            </tr>
+          </table>
+
+          <h2>4. Color Palette</h2>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0;">
+            <div style="background: #000c2a; color: white; padding: 1rem; border-radius: 0.5rem;">#000c2a<br><small>Navy Dark</small></div>
+            <div style="background: #d4a574; color: #000; padding: 1rem; border-radius: 0.5rem;">#d4a574<br><small>Gold Light</small></div>
+            <div style="background: #8b4513; color: white; padding: 1rem; border-radius: 0.5rem;">#8b4513<br><small>Gold Dark</small></div>
+            <div style="background: #f4e4bc; color: #000; padding: 1rem; border-radius: 0.5rem;">#f4e4bc<br><small>Parchment</small></div>
+            <div style="background: #c0392b; color: white; padding: 1rem; border-radius: 0.5rem;">#c0392b<br><small>Error Red</small></div>
+            <div style="background: #27ae60; color: white; padding: 1rem; border-radius: 0.5rem;">#27ae60<br><small>Success Green</small></div>
+          </div>
+        </div>
+
+        <!-- Test Plan -->
+        <div id="test-plan" class="docs-content">
+          <span class="back-btn" onclick="showDocs('home')">← Back to Documentation Hub</span>
+          <h1>Test Plan</h1>
+
+          <h2>1. Test Strategy Overview</h2>
+          <p>Testing covers functional requirements, UI/UX, security, performance, and cross-browser compatibility.</p>
+
+          <h2>2. Functional Testing</h2>
+          <h3>Demo Version Test Cases</h3>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Test Case</th>
+              <th>Expected Result</th>
+            </tr>
+            <tr><td>DF-001</td><td>View 3D Card</td><td>Card displays centered</td></tr>
+            <tr><td>DF-002</td><td>Card Mouse-Tilt</td><td>Card tilts toward mouse</td></tr>
+            <tr><td>DF-003</td><td>Card Flip</td><td>Card flips 180° smoothly</td></tr>
+            <tr><td>DF-004</td><td>Question Display</td><td>Question text visible</td></tr>
+            <tr><td>DF-005</td><td>New Question</td><td>Different question appears</td></tr>
+            <tr><td>DF-006</td><td>Add Question</td><td>Question appears in list</td></tr>
+            <tr><td>DF-007</td><td>Edit Question</td><td>Question updated</td></tr>
+            <tr><td>DF-008</td><td>Delete Question</td><td>Question removed</td></tr>
+          </table>
+
+          <h3>Full Application Test Cases</h3>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Test Case</th>
+              <th>Expected Result</th>
+            </tr>
+            <tr><td>FF-001</td><td>Sign Up - Valid</td><td>Account created, redirected</td></tr>
+            <tr><td>FF-002</td><td>Sign Up - Short Password</td><td>Error message</td></tr>
+            <tr><td>FF-003</td><td>Login - Valid</td><td>Redirected to home</td></tr>
+            <tr><td>FF-004</td><td>Login - Invalid</td><td>Error message</td></tr>
+            <tr><td>FF-005</td><td>Logout</td><td>Redirected, session gone</td></tr>
+            <tr><td>FF-006</td><td>Protected Route</td><td>Redirected to login</td></tr>
+            <tr><td>FF-007</td><td>Add Question</td><td>Saved to MongoDB</td></tr>
+            <tr><td>FF-008</td><td>User Isolation</td><td>Only shows own questions</td></tr>
+          </table>
+
+          <h2>3. Security Testing</h2>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>Test Case</th>
+              <th>Expected Result</th>
+            </tr>
+            <tr><td>SC-001</td><td>Password Hashing</td><td>All passwords hashed (bcrypt)</td></tr>
+            <tr><td>SC-002</td><td>Session Hijacking</td><td>Redirected to login</td></tr>
+            <tr><td>SC-003</td><td>Route Protection</td><td>Redirected to login</td></tr>
+            <tr><td>SC-004</td><td>Cross-User Access</td><td>Returns 404 Not Found</td></tr>
+          </table>
+
+          <h2>4. Performance Testing</h2>
+          <table>
+            <tr>
+              <th>Metric</th>
+              <th>Target</th>
+            </tr>
+            <tr><td>Initial Page Load</td><td>&lt; 3 seconds</td></tr>
+            <tr><td>API Response Time</td><td>&lt; 500ms</td></tr>
+            <tr><td>Card Animation FPS</td><td>60 FPS</td></tr>
+            <tr><td>Question Fetch</td><td>&lt; 100ms</td></tr>
+          </table>
+
+          <h2>5. Cross-Browser Testing</h2>
+          <table>
+            <tr>
+              <th>Browser</th>
+              <th>Version</th>
+              <th>Status</th>
+            </tr>
+            <tr><td>Chrome</td><td>90+</td><td>✅ Primary target</td></tr>
+            <tr><td>Firefox</td><td>88+</td><td>✅ Full support</td></tr>
+            <tr><td>Safari</td><td>14+</td><td>✅ WebGL enabled</td></tr>
+            <tr><td>Edge</td><td>90+</td><td>✅ Chromium-based</td></tr>
+          </table>
+
+          <h2>6. Sign-Off Criteria</h2>
+          <ul>
+            <li>✅ All functional tests pass</li>
+            <li>✅ No critical bugs</li>
+            <li>✅ MongoDB connection stable</li>
+            <li>✅ Authentication working</li>
+            <li>✅ CRUD operations working</li>
+            <li>✅ Cross-browser compatible</li>
+            <li>✅ Responsive design verified</li>
+            <li>✅ Documentation complete</li>
+          </ul>
+        </div>
+
+        <!-- Technical Documentation -->
+        <div id="technical" class="docs-content">
+          <span class="back-btn" onclick="showDocs('home')">← Back to Documentation Hub</span>
+          <h1>Technical Documentation</h1>
+
+          <h2>1. Folder Structure</h2>
+          <pre><code>3Dcard/
+├── demo/                    # Browser-only version
+│   ├── index.html
+│   ├── css/style.css
+│   └── js/
+│       ├── card.js         # Three.js 3D card
+│       └── questions.js    # CRUD (localStorage)
+│
+├── full-app/                # Full application
+│   ├── server.js           # Express server
+│   ├── package.json
+│   ├── models/
+│   │   ├── User.js        # User schema
+│   │   └── Question.js    # Question schema
+│   ├── views/
+│   │   ├── home.ejs
+│   │   ├── login.ejs
+│   │   ├── signup.ejs
+│   │   ├── questions.ejs
+│   │   └── documentation.ejs
+│   └── public/
+│       ├── css/style.css
+│       └── js/card.js
+│
+├── compliance/              # Legal docs
+└── docs/                    # Documentation</code></pre>
+
+          <h2>2. Backend Routes</h2>
+          <table>
+            <tr>
+              <th>Route</th>
+              <th>Method</th>
+              <th>Purpose</th>
+            </tr>
+            <tr><td>/</td><td>GET</td><td>Home page with 3D card</td></tr>
+            <tr><td>/signup</td><td>GET/POST</td><td>User registration</td></tr>
+            <tr><td>/login</td><td>GET/POST</td><td>User login</td></tr>
+            <tr><td>/logout</td><td>GET</td><td>User logout</td></tr>
+            <tr><td>/questions</td><td>GET</td><td>Questions management page</td></tr>
+            <tr><td>/questions</td><td>POST</td><td>Create question</td></tr>
+            <tr><td>/questions/:id</td><td>PUT</td><td>Update question</td></tr>
+            <tr><td>/questions/:id</td><td>DELETE</td><td>Delete question</td></tr>
+            <tr><td>/api/questions/random</td><td>GET</td><td>Get random question</td></tr>
+          </table>
+
+          <h2>3. Database Schema</h2>
+          <h3>User Schema (models/User.js)</h3>
+          <pre><code>const userSchema = new Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    minlength: 3,
+    maxlength: 30
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6
+  }
+}, { timestamps: true });</code></pre>
+
+          <h3>Question Schema (models/Question.js)</h3>
+          <pre><code>const questionSchema = new Schema({
+  text: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 5,
+    maxlength: 500
+  },
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
+}, { timestamps: true });</code></pre>
+
+          <h2>4. Frontend Logic</h2>
+          <h3>card.js - Three.js 3D Card</h3>
+          <pre><code>// Card dimensions (2.5:3.5 ratio)
+const CARD_WIDTH = 2.5;
+const CARD_HEIGHT = 3.5;
+
+// Mouse tilt effect
+targetRotationY = mouseX * 0.26;  // Max ±15 degrees
+targetRotationX = -mouseY * 0.26;
+
+// Flip animation
+function flipCard() {
+  const targetRotation = isFlipped ? 0 : Math.PI;
+  // 600ms ease-out cubic animation
+}
+
+// Question texture
+function createQuestionTexture(text) {
+  // Creates canvas with parchment background
+  // Adds decorative border
+  // Renders question text with word wrap
+}</code></pre>
+
+          <h3>questions.js - Question CRUD (Demo)</h3>
+          <pre><code>class QuestionStorage {
+  addQuestion(text) {
+    const newQuestion = {
+      id: Date.now(),
+      text: text,
+      createdAt: new Date().toISOString()
+    };
+    this.questions.push(newQuestion);
+    this.saveQuestions(this.questions);
+  }
+
+  getAllQuestions() {
+    return this.questions;
+  }
+
+  updateQuestion(id, newText) {
+    const question = this.questions.find(q => q.id === id);
+    if (question) {
+      question.text = newText;
+      this.saveQuestions(this.questions);
+    }
+  }
+
+  deleteQuestion(id) {
+    const index = this.questions.findIndex(q => q.id === id);
+    if (index !== -1) {
+      this.questions.splice(index, 1)[0];
+      this.saveQuestions(this.questions);
+    }
+  }
+}</code></pre>
+
+          <h2>5. Customization Guide</h2>
+          <h3>Page Background</h3>
+          <p>Edit <code>css/style.css</code> around line 20:</p>
+          <pre><code>background: url('your-background-image.jpg') center/cover no-repeat;</code></pre>
+
+          <h3>Card Images</h3>
+          <p>Edit <code>js/card.js</code> around line 10:</p>
+          <pre><code>const CARD_BACK_IMAGE = 'your-card-back.png';  // 714x1000px
+const CARD_FRONT_IMAGE = 'your-card-front.png';</code></pre>
+
+          <p><strong>Recommended dimensions:</strong> 714 x 1000 pixels (2.5:3.5 ratio)</p>
+        </div>
+
+        <!-- Wireframes & Site Map -->
+        <div id="wireframes" class="docs-content">
+          <span class="back-btn" onclick="showDocs('home')">← Back to Documentation Hub</span>
+          <h1>Wireframes and Site Map</h1>
+
+          <h2>1. Site Map</h2>
+          <div class="diagram">
+            <pre>
+┌────────────────────────────────────────────────────────────┐
+│                      Home (/)                              │
+│                        ↓                                   │
+│           ┌─────────────────────────────┐                │
+│           │         Login (/login)       │                │
+│           │         Signup (/signup)     │                │
+│           └─────────────────────────────┘                │
+│                        ↓                                   │
+│           ┌─────────────────────────────┐                │
+│           │      Questions (/questions)  │                │
+│           └─────────────────────────────┘                │
+│                        ↓                                   │
+│           ┌─────────────────────────────┐                │
+│           │   Documentation (/docs)      │                │
+│           └─────────────────────────────┘                │
+│                        ↓                                   │
+│           ┌─────────────────────────────┐                │
+│           │        Logout (/logout)      │                │
+│           └─────────────────────────────┘                │
+└────────────────────────────────────────────────────────────┘
+            </pre>
+          </div>
+
+          <h2>2. Page Wireframes</h2>
+
+          <h3>Home Page (Not Logged In)</h3>
+          <div class="diagram">
+            <pre>
+┌────────────────────────────────────────────────────────────┐
+│  [≡] 3Dcard    Home    Log in    Sign up    Documentation  │
+└────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│                    ╔═══════════════╗                         │
+│                    ║               ║                         │
+│                    ║   WELCOME TO   ║                         │
+│                    ║     3Dcard     ║                         │
+│                    ║               ║                         │
+│                    ╚═══════════════╝                         │
+│                                                            │
+│              The interactive 3D card that helps             │
+│              you start conversations in style.             │
+│                                                            │
+│   ┌─────────────────┐       ┌─────────────────┐           │
+│   │    SIGN UP      │       │     LOG IN      │           │
+│   └─────────────────┘       └─────────────────┘           │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+            </pre>
+          </div>
+
+          <h3>Questions Page</h3>
+          <div class="diagram">
+            <pre>
+┌────────────────────────────────────────────────────────────┐
+│  [≡] 3Dcard    Home    Questions    Log out   Documentation  │
+└────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│                    ╔═══════════════╗                         │
+│                    ║   MY QUESTIONS ║                         │
+│                    ╚═══════════════╝                         │
+│                                                            │
+│  ┌─────────────────────────────────────────────────┐     │
+│  │  Add New Question                                    │     │
+│  │  ┌─────────────────────────────────────────┐   │     │
+│  │  │ Enter your icebreaker question...        │   │     │
+│  │  │                                         │   │     │
+│  │  └─────────────────────────────────────────┘   │     │
+│  │                        ┌──────────┐        │     │
+│  │                        │   ADD    │        │     │
+│  │                        └──────────┘        │     │
+│  └─────────────────────────────────────────────────┘     │
+│                                                            │
+│  Your Questions:                                          │
+│  ┌─────────────────────────────────────────────────┐     │
+│  │ What is your favorite color?        [Edit] [Delete]│     │
+│  ├─────────────────────────────────────────────────┤     │
+│  │ If you could travel anywhere...?    [Edit] [Delete]│     │
+│  └─────────────────────────────────────────────────┘     │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+            </pre>
+          </div>
+
+          <h2>3. Mobile Responsive Layouts</h2>
+          <h3>Mobile Home (< 768px)</h3>
+          <div class="diagram">
+            <pre>
+┌──────────────────┐
+│  [≡]    3Dcard  │  ← Full width nav
+└──────────────────┘
+┌──────────────────┐
+│    ╔═════════╗   │
+│    ║         ║   │
+│    ║ WELCOME │   │
+│    ║  TO    ║   │
+│    ║ 3Dcard ║   │
+│    ║         ║   │
+│    ╚═════════╝   │
+│                  │
+│  The interactive │
+│  3D card that    │
+│  helps you start │
+│  conversations  │
+│                  │
+│  ┌──────────┐    │
+│  │ SIGN UP  │    │
+│  └──────────┘    │
+│  ┌──────────┐    │
+│  │  LOG IN  │    │
+│  └──────────┘    │
+└──────────────────┘
+            </pre>
+          </div>
+
+          <h2>4. User Flow Diagram</h2>
+          <div class="diagram">
+            <pre>
+First-Time User Flow:
+
+┌──────────┐
+│Visit Site │
+└─────┬────┘
+      │
+      ↓
+┌─────────────┐
+│Has Account? │
+└─────┬───────┘
+      │
+      ├─No──→ ┌────────┐
+      │       │Sign Up │
+      │       └───┬────┘
+      │           │
+      │       ┌───▼──────┐
+      │       │Create   │
+      │       │Account  │
+      │       └───┬──────┘
+      │           │
+      └─Yes─→ ┌────────┐
+              │ Log In │
+              └───┬────┘
+                  │
+              ┌───▼──────┐
+              │ 3D Card │
+              │Questions │
+              │Logout    │
+              └──────────┘
+            </pre>
+          </div>
+
+          <h2>5. Responsive Breakpoints</h2>
+          <table>
+            <tr>
+              <th>Breakpoint</th>
+              <th>Width</th>
+              <th>Layout</th>
+            </tr>
+            <tr>
+              <td>Mobile</td>
+              <td>&lt; 768px</td>
+              <td>Single column, hamburger menu</td>
+            </tr>
+            <tr>
+              <td>Tablet</td>
+              <td>768px - 1024px</td>
+              <td>Two-column questions, full nav</td>
+            </tr>
+            <tr>
+              <td>Desktop</td>
+              <td>&gt; 1024px</td>
+              <td>Full layout, optimal spacing</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Navigation
+    const menu = document.querySelector('.menu');
+    const menuList = document.querySelector('.menu-list');
+    const menuToggle = document.querySelector('.menu .button');
+
+    menuToggle.addEventListener('click', function() {
+      menu.classList.toggle('active');
+      menuList.classList.toggle('active');
+    });
+
+    // Documentation navigation
+    function showDocs(sectionId) {
+      // Hide all sections
+      document.querySelectorAll('.docs-home, .docs-content').forEach(el => {
+        el.classList.remove('active');
+        el.style.display = 'none';
+      });
+
+      // Show selected section
+      const target = document.getElementById(sectionId === 'home' ? 'docs-home' : sectionId);
+      if (target) {
+        target.classList.add('active');
+        target.style.display = 'block';
+      }
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>

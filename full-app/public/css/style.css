@@ -1,0 +1,461 @@
+/*
+ * 3Dcard - Demo Version Styles
+ *
+ * CUSTOMIZATION LOCATIONS (marked with 🔧):
+ * - Page background: Line ~20
+ * - Nav bar styling: Line ~40
+ * - Card customization: See card.js
+ */
+
+/* ============================
+   🔧 PAGE BACKGROUND - Replace this image URL with your own
+   ============================ */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: url('your-background-image.jpg') center/cover no-repeat;
+  /* Fallback color if image doesn't load */
+  background-color: #1a1a2e;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Dark overlay to make content readable */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ============================
+   NAVIGATION BAR
+   (Based on user-provided nav bar)
+   ============================ */
+nav {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  place-items: center;
+  width: 80vw;
+  max-width: 1000px;
+  background: #000c2a;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.5rem 2rem rgba(117, 78, 17, 1);
+  overflow: hidden;
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+/* The hamburger button - only hide checkbox inputs */
+input[type="checkbox"] {
+  display: none;
+}
+
+.button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.25rem;
+  padding-block: 0.5rem;
+  margin: auto;
+  background: #000c2a;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #001540;
+}
+
+.button .bar {
+  width: 2rem;
+  height: 0.25rem;
+  background-color: ivory;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Checkbox states for menu animation */
+.checkbox1:checked + label > .button1 > .bar1 {
+  transform: translate(0, 0.75rem) rotate(270deg) scaleX(0.35) scaleY(1.75);
+  transform-origin: bottom right;
+}
+
+.checkbox1:checked + label > .button1 > .bar2 {
+  transform: translate(0, 0) rotate(-270deg) scaleX(0.35) scaleY(1.75);
+  transform-origin: 50% 50%;
+}
+
+.checkbox1:checked + label > .button1 > .bar3 {
+  transform: translate(0, -0.75rem) rotate(270deg) scaleX(0.35) scaleY(1.75);
+  transform-origin: top left;
+}
+
+/* Menu list */
+.menu-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 3.5rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 8%;
+  transform: translateX(-80vw);
+  transform-origin: top left;
+  transition: transform 0.2s ease-out, width 0.4s ease;
+}
+
+.menu-list.active {
+  width: 100%;
+  transform: translateX(0);
+}
+
+/* Nav links */
+a {
+  padding: 0 3px 3px 3px;
+  border-bottom: 2px solid transparent;
+  font-family: system-ui, sans-serif;
+  font-size: max(1rem, 2cqi);
+  color: white;
+  text-decoration: none;
+  transition: border 0.3s ease-in-out;
+}
+
+a:hover {
+  border-bottom: 2px solid white;
+}
+
+/* ============================
+   MAIN CONTENT AREA
+   ============================ */
+main {
+  padding-top: 6rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Page sections (hidden/shown based on navigation) */
+.page-section {
+  display: none;
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+}
+
+.page-section.active {
+  display: block;
+}
+
+/* ============================
+   3D CARD CONTAINER
+   ============================ */
+#card-container {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+canvas {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* ============================
+   QUESTIONS CRUD STYLES
+   ============================ */
+.questions-container {
+  background: rgba(0, 12, 42, 0.9);
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: white;
+}
+
+.questions-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: ivory;
+}
+
+/* Form styles */
+.question-form {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+}
+
+.question-form h3 {
+  margin-top: 0;
+  color: #d4a574;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #d4a574;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d4a574;
+  border-radius: 0.25rem;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 1rem;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: #d4a574;
+  color: #000c2a;
+}
+
+.btn-primary:hover {
+  background: #e5b884;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #d4a574;
+  border: 1px solid #d4a574;
+}
+
+.btn-secondary:hover {
+  background: rgba(212, 165, 116, 0.1);
+}
+
+.btn-danger {
+  background: #c0392b;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #e74c3c;
+}
+
+/* Question list */
+.questions-list {
+  margin-top: 2rem;
+}
+
+.question-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.question-item .question-text {
+  flex: 1;
+}
+
+.question-item .question-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.question-item .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Edit mode styles */
+.edit-mode .question-text {
+  display: none;
+}
+
+.edit-mode .edit-form {
+  display: block;
+}
+
+.edit-form {
+  display: none;
+  flex: 1;
+}
+
+.edit-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d4a574;
+  border-radius: 0.25rem;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 1rem;
+  min-height: 60px;
+  resize: vertical;
+}
+
+/* ============================
+   DOCUMENTATION STYLES
+   ============================ */
+.documentation {
+  background: rgba(0, 12, 42, 0.95);
+  border-radius: 1rem;
+  padding: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+  color: white;
+  line-height: 1.8;
+}
+
+.documentation h1 {
+  color: #d4a574;
+  border-bottom: 2px solid #d4a574;
+  padding-bottom: 0.5rem;
+}
+
+.documentation h2 {
+  color: #d4a574;
+  margin-top: 2rem;
+}
+
+.documentation h3 {
+  color: #e5b884;
+}
+
+.documentation a {
+  color: #d4a574;
+  border-bottom-color: #d4a574;
+}
+
+.documentation code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: 'Courier New', monospace;
+}
+
+.documentation pre {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.documentation pre code {
+  background: none;
+  padding: 0;
+}
+
+.documentation table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+.documentation th,
+.documentation td {
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.documentation th {
+  background: rgba(212, 165, 116, 0.2);
+  color: #d4a574;
+}
+
+/* ============================
+   WELCOME CONTAINER STYLES
+   ============================ */
+.welcome-container {
+  text-align: center;
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 3rem;
+  background: rgba(0, 12, 42, 0.9);
+  border-radius: 1rem;
+  border: 2px solid #d4a574;
+}
+
+.welcome-container h1 {
+  color: #d4a574;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-container .subtitle {
+  color: #d4a574;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-container .description {
+  color: #d4a574;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.welcome-container .instruction {
+  margin-top: 1.5rem;
+  color: #d4a574;
+  font-size: 1rem;
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+   ============================ */
+@media (max-width: 768px) {
+  nav {
+    width: 95vw;
+  }
+
+  .page-section {
+    padding: 1rem;
+  }
+
+  .questions-container,
+  .documentation {
+    padding: 1.5rem;
+  }
+
+  .question-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .question-item .question-actions {
+    justify-content: flex-end;
+  }
+}

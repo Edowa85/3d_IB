@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Questions - 3Dcard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- NAVIGATION BAR -->
+  <nav aria-label="Menu" class="menu">
+    <input type="checkbox" id="checkbox1" class="checkbox1">
+    <label for="checkbox1">
+      <div class="button button1">
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+      </div>
+    </label>
+
+    <ul class="menu-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="/questions">Questions</a></li>
+      <li><a href="/logout">Log out</a></li>
+      <li><a href="/documentation">Documentation</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="page-section active">
+      <div class="questions-container">
+        <h1>Manage Your Questions</h1>
+
+        <!-- Add New Question Form -->
+        <form action="/questions" method="POST" class="question-form">
+          <h3>Add New Question</h3>
+          <div class="form-group">
+            <label for="text">Question:</label>
+            <textarea id="text" name="text" placeholder="Enter your icebreaker question..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Add Question</button>
+        </form>
+
+        <!-- Questions List -->
+        <div class="questions-list">
+          <% if (questions.length === 0) { %>
+            <p style="text-align: center; color: #888;">No questions yet. Add your first question above!</p>
+          <% } else { %>
+            <% questions.forEach(function(question) { %>
+              <div class="question-item" data-id="<%= question._id %>">
+                <div class="question-text"><%= question.text %></div>
+                <form class="edit-form" action="/questions/<%= question._id %>?_method=PUT" method="POST">
+                  <textarea name="text" required><%= question.text %></textarea>
+                  <button type="submit" class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-secondary btn-cancel">Cancel</button>
+                </form>
+                <div class="question-actions">
+                  <button class="btn btn-secondary btn-edit">Edit</button>
+                  <form class="delete-form" action="/questions/<%= question._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+                </div>
+              </div>
+            <% }); %>
+          <% } %>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Navigation
+    const menu = document.querySelector('.menu');
+    const menuList = document.querySelector('.menu-list');
+    const menuToggle = document.querySelector('.menu .button');
+
+    menuToggle.addEventListener('click', function() {
+      menu.classList.toggle('active');
+      menuList.classList.toggle('active');
+    });
+
+    // Edit functionality
+    document.querySelectorAll('.btn-edit').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = this.closest('.question-item');
+        item.classList.add('edit-mode');
+      });
+    });
+
+    document.querySelectorAll('.btn-cancel').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const item = this.closest('.question-item');
+        item.classList.remove('edit-mode');
+      });
+    });
+
+    // Add edit-mode styles
+    const style = document.createElement('style');
+    style.textContent = `
+      .question-item.edit-mode .question-text { display: none; }
+      .question-item.edit-mode .edit-form { display: flex; gap: 0.5rem; align-items: center; }
+      .question-item .edit-form { display: none; }
+      .edit-form textarea { flex: 1; min-height: 60px; }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

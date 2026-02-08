@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In - 3Dcard</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .auth-container {
+      max-width: 400px;
+      margin: 8rem auto 0;
+      background: rgba(0, 12, 42, 0.95);
+      padding: 3rem;
+      border-radius: 1rem;
+      color: white;
+    }
+    .auth-container h1 {
+      text-align: center;
+      color: #d4a574;
+      margin-bottom: 2rem;
+    }
+    .auth-container .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .auth-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #fffff0;
+      font-weight: bold;
+    }
+    .auth-container input[type="text"],
+    .auth-container input[type="password"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #d4a574;
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 240, 0.9);
+      color: #000c2a;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .auth-container input[type="text"]:focus,
+    .auth-container input[type="password"]:focus {
+      outline: none;
+      border-color: #fffff0;
+      box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.3);
+    }
+    .auth-container input::placeholder {
+      color: #888;
+    }
+    .auth-container .error {
+      background: rgba(192, 57, 43, 0.3);
+      border: 1px solid #c0392b;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1rem;
+      color: #ff6b6b;
+    }
+    .auth-container a {
+      color: #d4a574;
+      text-align: center;
+      display: block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav aria-label="Menu" class="menu">
+    <input type="checkbox" id="checkbox1" class="checkbox1">
+    <label for="checkbox1">
+      <div class="button button1">
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+      </div>
+    </label>
+
+    <ul class="menu-list">
+      <li><a href="/">Home</a></li>
+      <li><a href="/signup">Sign up</a></li>
+      <li><a href="/documentation">Documentation</a></li>
+    </ul>
+  </nav>
+
+  <div class="auth-container">
+    <h1>Log In</h1>
+
+    <% if (typeof error !== 'undefined') { %>
+      <div class="error"><%= error %></div>
+    <% } %>
+
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width: 100%;">Log In</button>
+    </form>
+
+    <p style="text-align: center; margin-top: 1.5rem;">
+      Don't have an account? <a href="/signup">Sign up</a>
+    </p>
+  </div>
+
+  <script>
+    // Navigation handling
+    const menu = document.querySelector('.menu');
+    const menuList = document.querySelector('.menu-list');
+    const menuToggle = document.querySelector('.menu .button');
+
+    menuToggle.addEventListener('click', function() {
+      menu.classList.toggle('active');
+      menuList.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
