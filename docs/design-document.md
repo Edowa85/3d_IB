@@ -127,17 +127,27 @@ graph TD
         MenuList --> Docs[Documentation]
     end
 
-    state Mobile {
-        MenuList -.Collapsed.-> Hamburger
-    }
+    %% Define Viewport/Context nodes outside the main component
+    MobileView[Mobile Viewport]
+    DesktopView[Desktop Viewport]
 
-    state Desktop {
-        MenuList --> Horizontal
-    }
+    %% Show how the viewport affects the components
+    MobileView -->|Hamburger is visible| Hamburger
+    MobileView -->|Menu List is hidden by default| MenuList
+    DesktopView -->|Hamburger is hidden| Hamburger
+    DesktopView -->|Menu List is visible and horizontal| MenuList
 
-    style Nav fill:#000c2a
+    %% Show the user interaction
+    Hamburger -.->|click toggles| MenuList
+
+    %% Styling
+    style Nav fill:#000c2a,stroke:#333,stroke-width:2px,color:#fff
+    style Hamburger fill:#f9f9f9,stroke:#333,stroke-width:1px
+    style MenuList fill:#f9f9f9,stroke:#333,stroke-width:1px
     style Home fill:#d4a574
     style Questions fill:#d4a574
+    style MobileView fill:#e6f3ff,stroke:#005c99,stroke-width:2px,stroke-dasharray: 5 5
+    style DesktopView fill:#e6ffe6,stroke:#006600,stroke-width:2px,stroke-dasharray: 5 5
 ```
 
 **Type:** Shared Component
