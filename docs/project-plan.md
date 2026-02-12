@@ -167,37 +167,41 @@ The core feature is an interactive 3D western-style playing card that responds t
 
 ```mermaid
 gantt
-    title 3Dcard Development Timeline (5 Days)
+    title Project Timeline (7 Weeks)
     dateFormat  YYYY-MM-DD
-    section Day 1: Foundation
-    Project Structure           :done, d1a, 2026-02-01, 2h
-    Package.json & Config       :done, d1b, after d1a, 1h
-    MongoDB Schemas             :done, d1c, after d1b, 2h
-    Express Server Setup        :done, d1d, after d1c, 3h
+    axisFormat  %b %d
+    todayMarker off
 
-    section Day 2: Authentication
-    User Signup Endpoint        :done, d2a, 2026-02-02, 3h
-    User Login Endpoint         :done, d2b, after d2a, 2h
-    Session Management          :done, d2c, after d2b, 2h
-    Auth UI Views               :done, d2d, after d2c, 3h
+    section Week 1
+    Life!                    :milestone, life, 2026-01-06, 1d
+    Benchmark                 :bench, 2026-01-05, 1d
+    Node.js Learning          :node, 2026-01-06, 6d
+    Project Planning          :plan, 2026-01-07, 7d
 
-    section Day 3: Core Features
-    Three.js 3D Card            :done, d3a, 2026-02-03, 4h
-    Card Flip Animation         :done, d3b, after d3a, 2h
-    Mouse-Tilt Effect           :done, d3c, after d3b, 2h
-    Question CRUD Routes        :done, d3d, after d3c, 2h
+    section Week 2
+    Database Structure / UI   :ui, 2026-01-12, 3d
 
-    section Day 4: Integration
-    Navigation Integration      :done, d4a, 2026-02-04, 2h
-    Responsive Design           :done, d4b, after d4a, 3h
-    Error Handling              :done, d4c, after d4b, 2h
-    Testing & Bug Fixes         :done, d4d, after d4c, 3h
+    section Week 3
+    MongoDB Study             :mongo1, 2026-01-19, 5d
 
-    section Day 5: Documentation
-    Technical Documentation     :done, d5a, 2026-02-05, 3h
-    Mermaid Diagrams            :done, d5b, after d5a, 2h
-    Compliance Documents        :done, d5c, after d5b, 2h
-    Final Review                :done, d5d, after d5c, 3h
+    section Week 4
+    MongoDB Integration       :mongo2, 2026-01-26, 3d
+    Login System Development  :login, 2026-01-28, 5d
+    Three.js Development      :three, 2026-01-28, 5d
+
+    section Week 5
+    AI BMAD                   :ai, 2026-02-02, 5d
+
+    section Weeks 1–6
+    Documentation             :docs, 2026-01-05, 30d
+
+    section Week 6
+    Demo Preparation          :demoPrep, 2026-02-09, 5d
+    Final Testing             :finalTest, 2026-02-09, 5d
+    Self Evaluation           :selfEval, 2026-02-13, 2d
+
+    section Week 7
+    Final Presentation        :milestone, demo, 2026-02-16, 1d
 ```
 
 ### Day 1: Foundation
