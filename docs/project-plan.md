@@ -4,7 +4,7 @@
 **Author:** Petri
 **Date:** February 2026
 **Project Type:** Web Application (Full-Stack)
-**Timeline:** 5 Days
+**Timeline:** --
 
 ---
 
@@ -301,58 +301,7 @@ npm start   # Standard Node.js execution
 
 ---
 
-## 13. Conclusion
 
-```mermaid
-graph TB
-    subgraph "Development Phases"
-        Phase1[Phase 1: Planning<br/>Day 1]
-        Phase2[Phase 2: Authentication<br/>Day 2]
-        Phase3[Phase 3: Core Features<br/>Day 3]
-        Phase4[Phase 4: Integration<br/>Day 4]
-        Phase5[Phase 5: Documentation<br/>Day 5]
-    end
-
-    subgraph "Key Deliverables"
-        D1[Project Structure<br/>MongoDB Schemas<br/>Express Server]
-        D2[User Signup/Login<br/>Session Management<br/>Auth UI]
-        D3[Three.js 3D Card<br/>Flip Animation<br/>Question CRUD]
-        D4[Navigation<br/>Responsive Design<br/>Error Handling]
-        D5[Technical Docs<br/>Mermaid Diagrams<br/>Compliance Docs]
-    end
-
-    subgraph "Success Criteria"
-        SC1[✅ Functional 3D Card]
-        SC2[✅ MongoDB Connection]
-        SC3[✅ CRUD Operations]
-        SC4[✅ Code Quality]
-        SC5[✅ Documentation]
-    end
-
-    Phase1 --> D1
-    Phase2 --> D2
-    Phase3 --> D3
-    Phase4 --> D4
-    Phase5 --> D5
-
-    D1 --> SC1
-    D2 --> SC2
-    D3 --> SC3
-    D4 --> SC4
-    D5 --> SC5
-
-    style Phase1 fill:#e1f5ff
-    style Phase2 fill:#ffe1e1
-    style Phase3 fill:#e1ffe1
-    style Phase4 fill:#fff5e1
-    style Phase5 fill:#f5e1ff
-
-    style SC1 fill:#c8e6c9
-    style SC2 fill:#c8e6c9
-    style SC3 fill:#c8e6c9
-    style SC4 fill:#c8e6c9
-    style SC5 fill:#c8e6c9
-```
 
 3Dcard is designed as a complete full-stack web application demonstrating modern JavaScript development practices with user authentication and persistent data storage.
 
