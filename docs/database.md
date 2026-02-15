@@ -517,19 +517,24 @@ db.questions.insertOne({
 ```mermaid
 graph TD
     A[Read Request] --> B{Entity Type}
+    
     B -->|User| C[Find User by Username]
-    B -->|Questions| D[Find by User ID]
-    B -->|Random| E[Random Question]
+    B -->|Questions| D[Find Questions by User ID]
+    B -->|Random| E[Get Random Question]
 
-    C --> F[db.users.findOne<br/>({username})]
+    C --> F[db.users.findOne<br/>username]
+    D --> G[db.questions.find<br/>createdBy: userId<br/>sort: createdAt desc]
+    E --> H[db.questions.aggregate<br/>match & sample]
 
-    D --> G[db.questions.find<br/>({createdBy: userId})<br/>.sort({createdAt: -1})]
+    F --> I[Return User Data]
+    G --> I
+    H --> I
 
-    E --> H[db.questions.aggregate<br/>([{$match}, {$sample}])]
-
-    style C fill:#2196F3
-    style D fill:#FF9800
-    style E fill:#4CAF50
+    style B fill:#f9f,stroke:#333,stroke-width:2px
+    style C fill:#2196F3,color:#fff
+    style D fill:#FF9800,color:#fff
+    style E fill:#4CAF50,color:#fff
+    style I fill:#9C27B0,color:#fff
 ```
 
 #### Find User (Login)
